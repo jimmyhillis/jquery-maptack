@@ -1,0 +1,29 @@
+{
+  "name": "maptack",
+  "title": "Maptack",
+  "description": "A geo-encoding HTML form tool for working out the lat/lng of a location from a Google Map.",
+  "version": "0.2.0",
+  "homepage": "https://github.com/jimmyhillis/maptack",
+  "author": {
+    "name": "Jimmy Hillis",
+    "email": "jimmy@hillis.me",
+    "url": "http://jimmy.hillis.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jimmyhillis/maptack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jimmyhillis/maptack/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jimmyhillis/maptack/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "1.8.0"
+  },
+  "keywords": []
+}
