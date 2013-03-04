@@ -46,7 +46,9 @@ should be a jQuery selector to an input element like
 
 ## Release History
 
-- v2.0 A port to CoffeeScript with a lot better support, documentation, and
+- v0.2.1 Added support for onTack event to provide users the ability of
+  customize behavior on every user map click.
+- v0.2.0 A port to CoffeeScript with a lot better support, documentation, and
   settings for better support on custom forms.
-- v1.0 A simple, and untested, JavaScript tool for mapping clicks on a google
+- v0.1.0 A simple, and untested, JavaScript tool for mapping clicks on a google
   map into latitude and longitude values.

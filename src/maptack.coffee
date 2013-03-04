@@ -17,6 +17,25 @@ REQUIRED THIRD PARTY LIBRARIES
 class Maptack
     ###*
      * Returns Maptack object with defaults set.
+     *
+     * OPTIONS:
+     *
+     *   Standard Google Map options from `google.maps.MapOptions`
+     *   @see  https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+     *   Each availabl method will be passed to the build a google.maps.Map
+     *   object on initilaztion.
+     *
+     *   logger:: Provide an HTML DOM element to have a log of all tack
+     *   points to be added -- a history of XXX.XXXXXX, XX.XXXXXX locations.
+     *
+     *   form:: JSON object { 'latitude', 'longitude' } allows users to
+     *   provide jQuery selectors $('.xx') which will be update with the
+     *   latest user Tack lat/lng.
+     *
+     * EVENTS
+     *
+     *   onTack:: Provide the Latitude, Longitude value on each user tack.
+     *
      * @param {dom}     element HTML dom element which holds Maptack object
      * @param {object}  options User options for setting default behavior
      * @return {dom}            Maptack object for chaining
@@ -34,7 +53,8 @@ class Maptack
             form: {
                 latitude: false,
                 longitude: false
-            }
+            },
+            onTack: false
         }, options
         @options.logger = false if not @options.logger.length
         @gm = new google.maps.Map element, map_opts
@@ -76,11 +96,16 @@ class Maptack
             visible: true,
             position: new google.maps.LatLng latitude, longitude
         }
+        if @options.onTack
+            @options.onTack.call(@, latitude, longitude)
         # Set provided form elements with new value
-        @options.form.latitude.val latitude if @options.form.latitude
-        @options.form.longitude.val longitude if @options.form.longitude
+        if @options.form.latitude
+            @options.form.latitude.val latitude
+        if @options.form.longitude
+            @options.form.longitude.val longitude
         # Log when requested
-        @options.logger.append "<div>#{location.toString()}</div>" if @options.logger
+        if @options.logger
+            @options.logger.append "<div>#{location.toString()}</div>"
         return @
 
 ###*

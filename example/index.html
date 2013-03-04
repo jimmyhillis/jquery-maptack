@@ -125,14 +125,21 @@
         <script src="../dist/maptack.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+
+                var callback = function (lat, lng) {
+                    window.console.log('Call back with ' + lat + ' ' + lng);
+                }
+
                 $('#maptack').maptack({
                     'logger': $('#maptack-log'),
+                    'onTack': callback,
                     'form': {
                         'latitude': $('#maptack-lat'),
                         'longitude': $('#maptack-lng')
                     }
                 });
                 var map = $('#maptack').data('maptack');
+
                 $('#maptack-findbyaddress').on('click', function (e) {
                     e.preventDefault();
                     map.placeTackByAddress($('#maptack-address').val());

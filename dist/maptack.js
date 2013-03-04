@@ -1,4 +1,4 @@
-/*! Maptack - v0.2.0 - 2013-02-17
+/*! Maptack - v0.2.1 - 2013-03-04
 * https://github.com/jimmyhillis/maptack
 * Copyright (c) 2013 Jimmy Hillis; Licensed MIT */
 
@@ -17,6 +17,25 @@
   Maptack = (function() {
     /**
      * Returns Maptack object with defaults set.
+     *
+     * OPTIONS:
+     *
+     *   Standard Google Map options from `google.maps.MapOptions`
+     *   @see  https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+     *   Each availabl method will be passed to the build a google.maps.Map
+     *   object on initilaztion.
+     *
+     *   logger:: Provide an HTML DOM element to have a log of all tack
+     *   points to be added -- a history of XXX.XXXXXX, XX.XXXXXX locations.
+     *
+     *   form:: JSON object { 'latitude', 'longitude' } allows users to
+     *   provide jQuery selectors $('.xx') which will be update with the
+     *   latest user Tack lat/lng.
+     *
+     * EVENTS
+     *
+     *   onTack:: Provide the Latitude, Longitude value on each user tack.
+     *
      * @param {dom}     element HTML dom element which holds Maptack object
      * @param {object}  options User options for setting default behavior
      * @return {dom}            Maptack object for chaining
@@ -41,7 +60,8 @@
         form: {
           latitude: false,
           longitude: false
-        }
+        },
+        onTack: false
       }, options);
       if (!this.options.logger.length) {
         this.options.logger = false;
@@ -103,6 +123,9 @@
         visible: true,
         position: new google.maps.LatLng(latitude, longitude)
       });
+      if (this.options.onTack) {
+        this.options.onTack.call(this, latitude, longitude);
+      }
       if (this.options.form.latitude) {
         this.options.form.latitude.val(latitude);
       }
