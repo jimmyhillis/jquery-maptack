@@ -46,6 +46,8 @@ should be a jQuery selector to an input element like
 
 ## Release History
 
+- v0.2.3 Renamed project to jquery-maptack for clearer understanding
+- v0.2.2 Set project up as a Bower project
 - v0.2.1 Added support for onTack event to provide users the ability of
   customize behavior on every user map click.
 - v0.2.0 A port to CoffeeScript with a lot better support, documentation, and
