@@ -61,6 +61,7 @@ class Maptack
         @current_tack = new google.maps.Marker { map: @gm, visible: false }
         # Take Google Map event and place tack from clicked point
         google.maps.event.addListener @gm, 'click', (event) =>
+            window.console.log "Yeah"
             @placeTack event.latLng
         return @
 
@@ -76,6 +77,8 @@ class Maptack
             if (status == google.maps.GeocoderStatus.OK)
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS)
                     @placeTack results[0].geometry.location
+                    # Center on new position, you get lost otherwise
+                    @gm.panTo(results[0].geometry.location)
                 else
                     alert "Address could not be found. Please try again"
         if typeof address == "string"
@@ -92,9 +95,10 @@ class Maptack
     placeTack: (location) =>
         latitude = location.lat()
         longitude = location.lng()
+        pos = location
         @current_tack.setOptions {
             visible: true,
-            position: new google.maps.LatLng latitude, longitude
+            position: pos
         }
         if @options.onTack
             @options.onTack.call(@, latitude, longitude)
@@ -118,7 +122,6 @@ $.fn.maptack = (options) ->
     $(@).each (i) ->
         $_ = $(@)
         maptack = $_.data('maptack')
-        $_.data('maptack',
-                  (maptack = new Maptack @, options)) if not maptack?
+        $_.data('maptack', (maptack = new Maptack @, options)) if not maptack?
     return @
 

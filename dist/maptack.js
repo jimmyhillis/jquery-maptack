@@ -1,4 +1,4 @@
-/*! Maptack - v0.2.1 - 2013-03-04
+/*! Maptack - v0.2.2 - 2013-03-24
 * https://github.com/jimmyhillis/maptack
 * Copyright (c) 2013 Jimmy Hillis; Licensed MIT */
 
@@ -72,6 +72,7 @@
         visible: false
       });
       google.maps.event.addListener(this.gm, 'click', function(event) {
+        window.console.log("Yeah");
         return _this.placeTack(event.latLng);
       });
       return this;
@@ -92,7 +93,8 @@
       onGeocode = function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
           if (status !== google.maps.GeocoderStatus.ZERO_RESULTS) {
-            return _this.placeTack(results[0].geometry.location);
+            _this.placeTack(results[0].geometry.location);
+            return _this.gm.panTo(results[0].geometry.location);
           } else {
             return alert("Address could not be found. Please try again");
           }
@@ -116,12 +118,13 @@
 
 
     Maptack.prototype.placeTack = function(location) {
-      var latitude, longitude;
+      var latitude, longitude, pos;
       latitude = location.lat();
       longitude = location.lng();
+      pos = location;
       this.current_tack.setOptions({
         visible: true,
-        position: new google.maps.LatLng(latitude, longitude)
+        position: pos
       });
       if (this.options.onTack) {
         this.options.onTack.call(this, latitude, longitude);

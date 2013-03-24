@@ -1,6 +1,6 @@
 {
-  "name": "jquery-plugin",
-  "version": "0.0.0-ignored",
+  "name": "maptack",
+  "version": "0.2.2",
   "engines": {
     "node": ">= 0.6.0"
   },

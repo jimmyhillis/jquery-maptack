@@ -82,6 +82,7 @@ REQUIRED THIRD PARTY LIBRARIES
         visible: false
       });
       google.maps.event.addListener(this.gm, 'click', function(event) {
+        window.console.log("Yeah");
         return _this.placeTack(event.latLng);
       });
       return this;
@@ -102,7 +103,8 @@ REQUIRED THIRD PARTY LIBRARIES
       onGeocode = function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
           if (status !== google.maps.GeocoderStatus.ZERO_RESULTS) {
-            return _this.placeTack(results[0].geometry.location);
+            _this.placeTack(results[0].geometry.location);
+            return _this.gm.panTo(results[0].geometry.location);
           } else {
             return alert("Address could not be found. Please try again");
           }
@@ -126,12 +128,13 @@ REQUIRED THIRD PARTY LIBRARIES
 
 
     Maptack.prototype.placeTack = function(location) {
-      var latitude, longitude;
+      var latitude, longitude, pos;
       latitude = location.lat();
       longitude = location.lng();
+      pos = location;
       this.current_tack.setOptions({
         visible: true,
-        position: new google.maps.LatLng(latitude, longitude)
+        position: pos
       });
       if (this.options.onTack) {
         this.options.onTack.call(this, latitude, longitude);

@@ -1,0 +1,8 @@
+{
+  "name": "maptack",
+  "version": "0.2.2",
+  "main": "./dist/maptack.min.js",
+  "dependencies": {
+    "jquery": "~1.7.2"
+  }
+}

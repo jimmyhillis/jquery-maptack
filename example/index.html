@@ -126,13 +126,13 @@
         <script type="text/javascript">
             $(document).ready(function () {
 
-                var callback = function (lat, lng) {
+                var onTackCalback = function (lat, lng) {
                     window.console.log('Call back with ' + lat + ' ' + lng);
                 }
 
                 $('#maptack').maptack({
                     'logger': $('#maptack-log'),
-                    'onTack': callback,
+                    'onTack': onTackCalback,
                     'form': {
                         'latitude': $('#maptack-lat'),
                         'longitude': $('#maptack-lng')
@@ -142,6 +142,7 @@
 
                 $('#maptack-findbyaddress').on('click', function (e) {
                     e.preventDefault();
+                    window.console.log('Yeah, what?');
                     map.placeTackByAddress($('#maptack-address').val());
                 });
 

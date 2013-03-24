@@ -14,17 +14,9 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'src/maptack.js': ['src/*.coffee']
+          'src/maptack.js': ['src/<%= pkg.name %>.coffee']
           }
         }
-        // flatten: {
-        //   options: {
-        //     flatten: true
-        //   },
-        //   files: {
-        //     'path/to/*.js': ['path/to/sources/*.coffee', 'path/to/more/*.coffee'] // compile individually into dest, flattening folder structure
-        //   }
-        // }
     },
     concat: {
       dist: {
