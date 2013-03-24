@@ -14,13 +14,13 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'src/maptack.js': ['src/<%= pkg.name %>.coffee']
+          'src/maptack.js': ['src/*.coffee']
           }
         }
     },
     concat: {
       dist: {
-        src: ['<banner:meta.banner>', '<file_strip_banner:src/<%= pkg.name %>.js>'],
+        src: ['<banner:meta.banner>', '<file_strip_banner:src/maptack.js>'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },

@@ -1,8 +1,8 @@
 {
-  "name": "maptack",
+  "name": "jquery-maptack",
   "title": "Maptack",
   "description": "A geo-encoding HTML form tool for working out the lat/lng of a location from a Google Map.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/jimmyhillis/maptack",
   "author": {
     "name": "Jimmy Hillis",
